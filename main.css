@@ -1,0 +1,180 @@
+body {
+    font-family: "Segoe UI", Tahoma, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.25;
+}
+
+br {
+    content: "";
+    margin: 2em;
+    display: block;
+    font-size: 24%;
+}
+
+code {
+    color: #a94c9d;
+    font-family: Consolas, Menlo, 'Ubuntu Mono', monospace;
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    padding: 3px 5px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+a {
+    color: #00aeff;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #33beff;
+}
+
+.navbar {
+    height: 53px;
+    background-color: #384655 !important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+    padding: 0px;
+}
+
+.navbar-brand {
+    padding: 0px;
+}
+
+#last-updated {
+    color: #ccc;
+    margin-right: 20px;
+    font-size: 13px;
+}
+
+#intro-text {
+    margin: 25px;
+}
+
+.btn {
+    font-size: 13px;
+}
+
+.btn-group,
+div.dt-buttons {
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+
+.btn-group>.btn:first-child {
+    background-color: #6e53a3;
+    margin-right: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: #626365;
+}
+
+.dropdown-item {
+    font-size: 13px;
+    color: #ccc;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: white;
+    color: #333;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.buttons-copy {
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+}
+
+.form-control {
+    border: 1px solid gray;
+    margin-right: 20px;
+}
+
+table {
+    width: 100% !important;
+}
+
+th {
+    font-size: 14px;
+    font-weight: 600;
+    color: #006d9a;
+    vertical-align: bottom;
+    line-height: 1.25;
+    font-size: 13px;
+}
+
+td {
+    vertical-align: top;
+}
+
+table.dataTable tr.group td {
+    background-color: #e2e4e7 !important;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+table.dataTable.compact thead th,
+table.dataTable.compact thead td {
+    padding-left: 10px;
+}
+
+table.dataTable.compact tbody th,
+table.dataTable.compact tbody td {
+    padding-left: 10px;
+}
+
+table.dataTable.hover tbody tr:hover,
+table.dataTable.display tbody tr:hover {
+    background-color: #EDF9FF;
+}
+
+table.dataTable.stripe tbody>tr.odd.selected,
+table.dataTable.stripe tbody>tr.odd>.selected,
+table.dataTable.display tbody>tr.odd.selected,
+table.dataTable.display tbody>tr.odd>.selected {
+    background-color: #006d9a;
+    border: none;
+}
+
+table.dataTable.stripe tbody>tr.even.selected,
+table.dataTable.stripe tbody>tr.even>.selected,
+table.dataTable.display tbody>tr.even.selected,
+table.dataTable.display tbody>tr.even>.selected {
+    background-color: #006d9a;
+    border: none;
+}
+
+table.dataTable tbody th.focus,
+table.dataTable tbody td.focus {
+    box-shadow: none;
+}
+
+.yadcf-filter-wrapper {
+    margin-left: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.yadcf-filter-reset-button {
+    margin-left: 4px;
+}
+
+th:focus {
+    outline: note;
+    outline-color: transparent;
+    outline-style: auto;
+    outline-width: 0px;
+}
+
+.chosen-container {
+    font-size: 13px;
+    font-weight: normal;
+}
