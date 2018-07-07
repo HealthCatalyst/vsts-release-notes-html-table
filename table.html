@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>DOS Release Notes</title>
+
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+
+    <!--Datatables-->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <!--Datatables extensions: https://datatables.net/download-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.1/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/sl-1.2.6/datatables.min.css"
+    />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.1/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/sl-1.2.6/datatables.min.js"></script>
+
+    <!--Datatables Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!--Select2-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.js"></script>
+
+    <!--chosen-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js"></script>
+
+    <!--yadcf-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.3/jquery.dataTables.yadcf.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.3/jquery.dataTables.yadcf.js"></script>
+
+    <!--main CSS-->
+    <link rel="stylesheet" type="text/css" href="/main.css">
+
+
+    <script>
+        $(document).ready(function () {
+
+            $.getJSON('13.json', function (json) {
+                var tr;
+                for (var i = 0; i < json.length; i++) {
+                    tr = $('<tr/>');
+                    tr.append("<td>" + json[i].software + "</td>");
+                    tr.append("<td>" + json[i].fullName + "</td>");
+                    tr.append("<td>" + json[i].releaseName + "</td>");
+                    tr.append("<td>" + json[i].sqlServerVersion + "</td>");
+                    tr.append("<td>" + json[i].releaseDate + "</td>");
+                    tr.append("<td>" + json[i].type + "</td>");
+                    tr.append("<td>" + json[i].releaseNote + "</td>");
+                    tr.append("<td>" + json[i].productsAffected + "</td>");
+                    tr.append("<td>" +
+                        "<a href=\"https://healthcatalyst.visualstudio.com/CAP/_workitems/edit/" +
+                        json[i].id + "\">" + json[i].id + "</a>" + "</td>");
+                    $('table').append(tr);
+                }
+                var groupColumn = 1;
+                var table = $('#notes').DataTable({
+                    //orderFixed: [2, 'asc'],
+                    keys: true,
+                    //stateSave: true,
+                    responsive: true,
+                    colReorder: true,
+                    select: true,
+                    fixedHeader: true,
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": groupColumn
+                    }],
+                    buttons: [
+                        'colvis', 'copy', 'excel', 'csv', 'print'
+                    ],
+                    dom: 'frBtip',
+
+                    "displayLength": 5000,
+                    "order": [
+                        [groupColumn, 'desc']
+                    ],
+
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+
+                        api.column(groupColumn, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before(
+                                    '<tr class="group"><td colspan="8">' +
+                                    group + '</td></tr>'
+                                );
+
+                                last = group;
+                            }
+                        });
+                    }
+                });
+
+                // Order by the grouping
+                $('#notes tbody').on('click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+                        table.order([groupColumn, 'desc']).draw();
+                    } else {
+                        table.order([groupColumn, 'asc']).draw();
+                    }
+                });
+
+
+                'use strict';
+                var oTable = $('#notes').DataTable();
+                var mySort = function (a, b) {
+                    return a.toLowerCase().localeCompare(b.toLowerCase());
+                };
+                yadcf.init(oTable, [{
+                        // Software
+                        column_number: 0,
+                        filter_type: 'multi_select',
+                        select_type: 'chosen',
+                        sort_order: 'desc',
+                        filter_default_label: 'Select me'
+                    },
+                    {
+                        // Full name (not shown by default because table display is grouped on these rows)
+                        column_number: 1,
+                        filter_type: 'multi_select',
+                        select_type: 'chosen',
+                        filter_match_mode: 'exact',
+                        sort_as: 'custom',
+                        sort_as_custom_func: mySort
+                    },
+                    {
+                        // Release name (aka version number)
+                        column_number: 2,
+                        filter_type: 'multi_select',
+                        select_type: 'chosen',
+                        sort_order: 'desc',
+                        filter_match_mode: 'exact',
+                        sort_as: 'custom',
+                        sort_as_custom_func: mySort
+                    },
+                    {
+                        // SQL Server version
+                        column_number: 3,
+                        filter_type: 'multi_select',
+                        select_type: 'chosen',
+                        filter_match_mode: 'exact',
+                        sort_order: 'asc',
+                        sort_as: 'custom',
+                        sort_as_custom_func: mySort,
+                        width: '180px',
+                        dropdownAutoWidth: true
+                    },
+                    {
+                        // Release date
+                        column_number: 4,
+                        filter_type: 'multi_select',
+                        sort_order: 'asc',
+                        filter_match_mode: 'exact',
+                        select_type: 'chosen',
+                        sort_as: 'custom',
+                        sort_as_custom_func: mySort
+                    },
+                    {
+                        // Type
+                        column_number: 5,
+                        filter_type: 'multi_select',
+                        filter_match_mode: 'exact',
+                        select_type: 'chosen',
+                        sort_as: 'custom',
+                        sort_as_custom_func: mySort
+                    },
+                    //{
+                    //    Release note
+                    //    column_number: 6,
+                    //},            
+                    {
+                        // Products affected
+                        column_number: 7,
+                        column_data_type: "html",
+                        html_data_type: "selector",
+                        filter_default_label: "Select product",
+                    }
+                    //,{
+                    //    ID
+                    //    column_number: 8,
+                    //},
+                ]);
+            });
+        });
+    </script>
+
+    <style>
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img id="triflame" src="logo.svg" height="53" class="d-inline-block align-top" alt="">
+            </a>
+        </nav>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Last updated-->
+        <div class="collapse navbar-collapse justify-content-end" id="last-updated">
+            Last updated
+            <script>
+                document.write(document.lastModified);
+            </script>
+        </div>
+    </nav>
+    <div id="intro-text">
+        <p id="intro">Things you can do:</p>
+        <ul>
+            <li>Drag columns</li>
+            <li>
+                <code>Shift</code> + click
+            </li>
+        </ul>
+    </div>
+    <table id="notes" class="cell-border display compact" style="width:100%">
+        <thead>
+            <th>Software</th>
+            <th>Full name</th>
+            <th>Release</th>
+            <th>SQL Server version</th>
+            <th>Release date</th>
+            <th>Type</th>
+            <th>Release note</th>
+            <th>Products affected</th>
+            <th>ID</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</body>
+
+</html>
