@@ -12,7 +12,7 @@ Within the CAP VSTS project, release note information is pulled from the followi
 
 ### Default fields in the CAP VSTS project
 Field | Description | Field name stored in VSTS
--|-|-|-
+-|-|-
 ID | Work item ID | `System.id`
 State | This project recognizes only items in a `Done` state | `System.State`
 Work item type | Epic, Feature, Product Backlog Item, Bug | `System.WorkItemType`
