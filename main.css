@@ -66,6 +66,37 @@ div.dt-buttons {
     margin-bottom: 20px;
 }
 
+button.dt-button, div.dt-button, a.dt-button {
+    background-color: #6e53a3;
+    background-image: none;
+    color: white;
+    font-size: 13px;
+    border-radius: 4px;
+    border: none;
+}
+
+button:not(.disabled).dt-button:hover, div:not(.disabled).dt-button:hover, a:not(.disabled).dt-button:hover {
+    background-image: none;
+    background-color: #7660A3;
+}
+
+button:not(.disabled).dt-button:active, button:not(.disabled).dt-button.active, div:not(.disabled).dt-button:active, div:not(.disabled).dt-button.active, a:not(.disabled).dt-button:active, a:not(.disabled).dt-button.active {
+    background-image: none;
+    background-color: #7660A3;
+
+}
+
+button:not(.disabled):not(.disabled).dt-button:hover:active, button:not(.disabled):not(.disabled).dt-button.active:hover, div:not(.disabled):not(.disabled).dt-button:hover:active, div:not(.disabled):not(.disabled).dt-button.active:hover, a:not(.disabled):not(.disabled).dt-button:hover:active, a:not(.disabled):not(.disabled).dt-button.active:hover {
+    background-image: none;
+    background-color: #7660A3;
+}
+
+div.dt-button-collection button:not(.disabled).dt-button:active, div.dt-button-collection button:not(.disabled).dt-button.active, div.dt-button-collection div:not(.disabled).dt-button:active, div.dt-button-collection div:not(.disabled).dt-button.active, div.dt-button-collection a:not(.disabled).dt-button:active, div.dt-button-collection a:not(.disabled).dt-button.active {
+    background-image: none;
+    background-color: #6e53a3;
+}
+
+
 .btn-group>.btn:first-child {
     background-color: #6e53a3;
     margin-right: 10px;
@@ -177,4 +208,8 @@ th:focus {
 .chosen-container {
     font-size: 13px;
     font-weight: normal;
+}
+
+.chosen-container-multi .chosen-choices li.search-field input[type='text'] {
+    font-family: "Segoe UI", Tahoma, Helvetica, sans-serif;
 }
