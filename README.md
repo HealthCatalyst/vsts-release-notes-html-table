@@ -4,6 +4,9 @@ A long list of release notes covering multiple products and services, versions, 
 
 For less-complex needs, consider using the VSTS release notes extension [described below](#step-2-set-up-a-release-notes-task) and forgetting the rest.
 
+> #### Difference between this solution and the [vsts-to-release-notes-from-query](https://github.com/HealthCatalyst/vsts-release-notes-from-query) Health Catalyst project
+> This solution generates release notes from work items associated with a VSTS release. The other solution generates them from VSTS queries.
+
 # How this project works
 Release notes include what changed, which product version the change was released with, and when it was released. Default and custom fields in VSTS work items can contain that information, and the VSTS release pipeline can group work items by release. This project extracts that information and uses it to generate release notes.
 
