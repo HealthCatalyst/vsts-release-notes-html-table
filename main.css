@@ -66,7 +66,9 @@ div.dt-buttons {
     margin-bottom: 20px;
 }
 
-button.dt-button, div.dt-button, a.dt-button {
+button.dt-button,
+div.dt-button,
+a.dt-button {
     background-color: #6e53a3;
     background-image: none;
     color: white;
@@ -76,27 +78,47 @@ button.dt-button, div.dt-button, a.dt-button {
     font-weight: 600;
 }
 
-button:not(.disabled).dt-button:hover, div:not(.disabled).dt-button:hover, a:not(.disabled).dt-button:hover {
+button:not(.disabled).dt-button:hover,
+div:not(.disabled).dt-button:hover,
+a:not(.disabled).dt-button:hover {
     background-image: none;
     background-color: #7660A3;
 }
 
-button:not(.disabled).dt-button:active, button:not(.disabled).dt-button.active, div:not(.disabled).dt-button:active, div:not(.disabled).dt-button.active, a:not(.disabled).dt-button:active, a:not(.disabled).dt-button.active {
+button:not(.disabled).dt-button:active,
+button:not(.disabled).dt-button.active,
+div:not(.disabled).dt-button:active,
+div:not(.disabled).dt-button.active,
+a:not(.disabled).dt-button:active,
+a:not(.disabled).dt-button.active {
     background-image: none;
     background-color: #7660A3;
 }
 
-button:not(.disabled):not(.disabled).dt-button:hover:active, button:not(.disabled):not(.disabled).dt-button.active:hover, div:not(.disabled):not(.disabled).dt-button:hover:active, div:not(.disabled):not(.disabled).dt-button.active:hover, a:not(.disabled):not(.disabled).dt-button:hover:active, a:not(.disabled):not(.disabled).dt-button.active:hover {
+button:not(.disabled):not(.disabled).dt-button:hover:active,
+button:not(.disabled):not(.disabled).dt-button.active:hover,
+div:not(.disabled):not(.disabled).dt-button:hover:active,
+div:not(.disabled):not(.disabled).dt-button.active:hover,
+a:not(.disabled):not(.disabled).dt-button:hover:active,
+a:not(.disabled):not(.disabled).dt-button.active:hover {
     background-image: none;
     background-color: #7660A3;
 }
 
-div.dt-button-collection button:not(.disabled).dt-button:active, div.dt-button-collection button:not(.disabled).dt-button.active, div.dt-button-collection div:not(.disabled).dt-button:active, div.dt-button-collection div:not(.disabled).dt-button.active, div.dt-button-collection a:not(.disabled).dt-button:active, div.dt-button-collection a:not(.disabled).dt-button.active {
+div.dt-button-collection button:not(.disabled).dt-button:active,
+div.dt-button-collection button:not(.disabled).dt-button.active,
+div.dt-button-collection div:not(.disabled).dt-button:active,
+div.dt-button-collection div:not(.disabled).dt-button.active,
+div.dt-button-collection a:not(.disabled).dt-button:active,
+div.dt-button-collection a:not(.disabled).dt-button.active {
     background-image: none;
     background-color: #6e53a3;
 }
 
-[type=reset], [type=submit], button, html [type=button] {
+[type=reset],
+[type=submit],
+button,
+html [type=button] {
     border: none;
     border-radius: 2px;
 }
