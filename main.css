@@ -46,6 +46,10 @@ a:hover {
     padding: 0px;
 }
 
+#logo-no-shadow {
+    box-shadow: none;
+}
+
 #last-updated {
     color: #ccc;
     margin-right: 20px;
@@ -54,10 +58,6 @@ a:hover {
 
 #intro-text {
     margin: 25px;
-}
-
-.btn {
-    font-size: 13px;
 }
 
 .btn-group,
@@ -73,6 +73,7 @@ button.dt-button, div.dt-button, a.dt-button {
     font-size: 13px;
     border-radius: 4px;
     border: none;
+    font-weight: 600;
 }
 
 button:not(.disabled).dt-button:hover, div:not(.disabled).dt-button:hover, a:not(.disabled).dt-button:hover {
@@ -83,7 +84,6 @@ button:not(.disabled).dt-button:hover, div:not(.disabled).dt-button:hover, a:not
 button:not(.disabled).dt-button:active, button:not(.disabled).dt-button.active, div:not(.disabled).dt-button:active, div:not(.disabled).dt-button.active, a:not(.disabled).dt-button:active, a:not(.disabled).dt-button.active {
     background-image: none;
     background-color: #7660A3;
-
 }
 
 button:not(.disabled):not(.disabled).dt-button:hover:active, button:not(.disabled):not(.disabled).dt-button.active:hover, div:not(.disabled):not(.disabled).dt-button:hover:active, div:not(.disabled):not(.disabled).dt-button.active:hover, a:not(.disabled):not(.disabled).dt-button:hover:active, a:not(.disabled):not(.disabled).dt-button.active:hover {
@@ -96,14 +96,25 @@ div.dt-button-collection button:not(.disabled).dt-button:active, div.dt-button-c
     background-color: #6e53a3;
 }
 
-
-.btn-group>.btn:first-child {
-    background-color: #6e53a3;
-    margin-right: 10px;
+[type=reset], [type=submit], button, html [type=button] {
+    border: none;
+    border-radius: 2px;
 }
 
-.btn-secondary:hover {
-    background-color: #626365;
+.chosen-container-multi .chosen-choices {
+    background-image: none;
+    border: 1px solid #d7dde4;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice {
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+.chosen-container-active .chosen-choices {
+    border: 1px solid #d7dde4;
+    box-shadow: none;
 }
 
 .dropdown-item {
@@ -147,7 +158,7 @@ td {
 }
 
 table.dataTable tr.group td {
-    background-color: #e2e4e7 !important;
+    background-color: #d7dde4 !important;
     font-weight: 600;
     font-size: 13px;
 }
