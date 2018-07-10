@@ -115,12 +115,43 @@ div.dt-button-collection a:not(.disabled).dt-button.active {
     background-color: #6e53a3;
 }
 
+button.dt-button:focus:not(.disabled),
+div.dt-button:focus:not(.disabled),
+a.dt-button:focus:not(.disabled) {
+    background-image: none;
+    background-color: #6e53a3;
+    text-shadow: none;
+    border: none;
+}
+
+button:not(.disabled).dt-button:focus,
+div:not(.disabled).dt-button:focus,
+a:not(.disabled).dt-button:focus {
+    background-image: none;
+    background-color: #6e53a3;
+    text-shadow: none;
+    border: none;
+}
+
 [type=reset],
 [type=submit],
 button,
 html [type=button] {
     border: none;
     border-radius: 2px;
+}
+
+label {
+    margin-right: 12px;
+}
+
+[type=search] {
+    -webkit-appearance: unset;
+    border: 1px solid #d7dde4;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    height: 26px;
 }
 
 .chosen-container-multi .chosen-choices {
@@ -221,6 +252,11 @@ table.dataTable tbody td.focus {
     box-shadow: none;
 }
 
+.yadcf-filter {
+    border: 1px solid #d7dde4;
+    color: #999
+}
+
 .yadcf-filter-wrapper {
     margin-left: 0px;
     margin-top: 4px;
@@ -229,6 +265,7 @@ table.dataTable tbody td.focus {
 
 .yadcf-filter-reset-button {
     margin-left: 4px;
+    background-color: #d7dde4;
 }
 
 th:focus {

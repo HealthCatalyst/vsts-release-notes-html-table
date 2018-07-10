@@ -3,6 +3,10 @@
 #jq required (https://stedolan.github.io/jq)
 #Stepped for troubleshooting purposes
 
+#PUT YOUR JSON FILES IN A DIR AT ROOT CALLED `json`
+
+cd json
+
 #Encode
 dos2unix *.json
 
@@ -37,7 +41,7 @@ jq . -s 1.json > 2.json
 jq -r 'del(.[] | select(.publish != "Yes"))' <2.json >3.json
 
 #Select which fields to output
-jq '.[] |= {releaseDate,"fullName":.releaseName,"sqlServerVersion":.releaseName,"software":.releaseName,releaseName,releaseNote,type,productsAffected,id}' <3.json >4.json 
+jq '.[] |= {releaseDate,"fullName":.releaseName,"sqlServerVersion":.releaseName,"software":.releaseName,releaseName,releaseNote,type,productsAffected,id}' <3.json >4.json
 
 #Limit "releaseDate" to just the date
 jq '[.[] | .releaseDate |= sub(" ........"; "")]' <4.json >5.json 
@@ -59,8 +63,19 @@ jq '[.[] | .software |= sub(" (.*?) for SQL 20.. triggered on(.*?)......-......"
 ##SAMD AND SMD
 jq '[.[] | .software |= sub(" (.*?) triggered on(.*?)......-......";"")]' <10.json >11.json
 
+#New column to abbreviate "Software"
+##Duplicate fullName field
+jq '.[] |= {releaseDate,fullName,sqlServerVersion,software,"softwareAbbrev":.fullName,releaseName,releaseNote,type,productsAffected,id}' <11.json >12.json
+##Remove SQL Server version for CAP and DOS
+jq '[.[] | .softwareAbbrev |= sub(" for SQL 20.."; "")]' <12.json >13.json
+jq '[.[] | .softwareAbbrev |= match("[A-Z]* [0-9]*[0-9].[0-9]").string]' <13.json >14.json
+
 #Change bug to patched bug and PBI to added functionality
-jq 'map(if .type== "Bug" then .type= "Patched bug" else . end) | map(if .type== "Product Backlog Item" then .type= "Added functionality" else . end)' <11.json >12.json
+jq 'map(if .type== "Bug" then .type= "Patched bug" else . end) | map(if .type== "Product Backlog Item" then .type= "Added functionality" else . end)' <14.json >15.json
 
 #Split products affected into array
-jq 'map(.productsAffected |= split(";"))' <12.json >13.json
+jq 'map(.productsAffected |= split(";"))' <15.json >test.json
+
+cd ..
+
+cp json/test.json .
