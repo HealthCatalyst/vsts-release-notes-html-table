@@ -152,6 +152,7 @@ label {
 
 .dataTables_wrapper .dataTables_filter input {
     height: 26px;
+    width: 225px;
 }
 
 .chosen-container-multi .chosen-choices {
@@ -193,6 +194,10 @@ label {
     margin-right: 20px;
 }
 
+.chosen-container-multi .chosen-choices li.search-field input[type=text] {
+    color: #708090;
+}
+
 table {
     width: 100% !important;
 }
@@ -228,14 +233,14 @@ table.dataTable.compact tbody td {
 
 table.dataTable.hover tbody tr:hover,
 table.dataTable.display tbody tr:hover {
-    background-color: #EDF9FF;
+    background-color: #E7F1F5;
 }
 
 table.dataTable.stripe tbody>tr.odd.selected,
 table.dataTable.stripe tbody>tr.odd>.selected,
 table.dataTable.display tbody>tr.odd.selected,
 table.dataTable.display tbody>tr.odd>.selected {
-    background-color: #006d9a;
+    background-color: #B9D7E3;
     border: none;
 }
 
@@ -243,7 +248,7 @@ table.dataTable.stripe tbody>tr.even.selected,
 table.dataTable.stripe tbody>tr.even>.selected,
 table.dataTable.display tbody>tr.even.selected,
 table.dataTable.display tbody>tr.even>.selected {
-    background-color: #006d9a;
+    background-color: #B9D7E3;
     border: none;
 }
 
@@ -254,7 +259,9 @@ table.dataTable tbody td.focus {
 
 .yadcf-filter {
     border: 1px solid #d7dde4;
-    color: #999
+    color: #708090;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .yadcf-filter-wrapper {
@@ -278,6 +285,7 @@ th:focus {
 .chosen-container {
     font-size: 13px;
     font-weight: normal;
+    color: #708090;
 }
 
 .chosen-container-multi .chosen-choices li.search-field input[type='text'] {
