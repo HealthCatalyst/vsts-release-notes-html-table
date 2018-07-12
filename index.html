@@ -5,15 +5,14 @@
     <meta charset="utf-8">
     <title>DOS Release Notes</title>
 
+    <!--favicon-->
+    <link href="/favicon.ico?v=1" rel="shortcut icon" type="image/x-icon">
+
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
         crossorigin="anonymous"></script>
-
-    <!--Datatables
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">-->
 
     <!--Datatables extensions: https://datatables.net/download-->
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.1/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/sl-1.2.6/datatables.min.js"></script>
@@ -58,7 +57,7 @@
                     tr.append("<td>" + json[i].productsAffected + "</td>");
                     tr.append("<td>" +
                         "<a href=\"https://healthcatalyst.visualstudio.com/CAP/_workitems/edit/" +
-                        json[i].id + "\">" + json[i].id + "</a>" + "</td>");
+                        json[i].id + "\" target=\"_blank\">" + json[i].id + "</a>" + "</td>");
                     $('table').append(tr);
                 }
                 var groupColumn = 1;
@@ -198,6 +197,10 @@
                         column_data_type: "html",
                         html_data_type: "selector",
                         filter_default_label: "Select product",
+                        data: ['Atlas', 'CAP SQL 2016', 'DMCM', 'EDW Console', 'Fabric', 'IDEA',
+                            'Install', 'Loader Engine', 'Platform General', 'SAMD',
+                            'Services', 'SMD'
+                        ]
                     }
                     //,{
                     //    ID
@@ -225,15 +228,14 @@
 
         <!--Last updated-->
         <div class="collapse navbar-collapse justify-content-end" id="last-updated">
-            Last updated
+            CUSTOMERS CANNOT ACCESS THIS SITE | Last updated
             <script>
                 document.write(document.lastModified);
             </script>
         </div>
     </nav>
     <div id="intro-text">
-        <p id="intro">Drag columns |
-            <code>Shift</code> + click</p>
+        <p id="intro">This page shows changes since the initial DOS 18.1 release. This page is in development and this is a demo site that customers can't access. This page will probably end up in HC Community or on docs.healthcatalyst.com. Feedback invited on #pe-comms-and-docs. Ways to use this page: Drag columns | <code>Shift</code> + click</p>
     </div>
     <table id="notes" class="cell-border display compact" style="width:100%">
         <thead>
@@ -252,4 +254,5 @@
         </tbody>
     </table>
 </body>
+
 </html>
