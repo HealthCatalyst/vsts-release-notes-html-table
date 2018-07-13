@@ -78,11 +78,17 @@ a.dt-button {
     font-weight: 600;
 }
 
+button:focus,
+button:hover {
+    outline: none;
+}
+
 button:not(.disabled).dt-button:hover,
 div:not(.disabled).dt-button:hover,
 a:not(.disabled).dt-button:hover {
     background-image: none;
     background-color: #7660A3;
+    border: none;
 }
 
 button:not(.disabled).dt-button:active,
@@ -138,7 +144,7 @@ a:not(.disabled).dt-button:focus {
 button,
 html [type=button] {
     border: none;
-    border-radius: 2px;
+    /*border-radius: 2px;*/
 }
 
 label {
@@ -153,6 +159,7 @@ label {
 .dataTables_wrapper .dataTables_filter input {
     height: 26px;
     width: 225px;
+    zoom: unset;
 }
 
 .chosen-container-multi .chosen-choices {
@@ -229,7 +236,14 @@ table.dataTable.compact thead td {
 table.dataTable.compact tbody th,
 table.dataTable.compact tbody td {
     padding-left: 10px;
+    padding-right: 10px;
 }
+
+/*** Turns off internal vertical borders
+table.dataTable.cell-border tbody th, table.dataTable.cell-border tbody td {
+    border-right: none;
+}
+*/
 
 table.dataTable.hover tbody tr:hover,
 table.dataTable.display tbody tr:hover {
