@@ -74,14 +74,17 @@
                         "targets": groupColumn
                     }],
                     buttons: [
-                        'colvis', 'copy', 'excel', 'csv', 'print'
+                        'copy', 'excel', 'csv'
                     ],
                     dom: 'frBtip',
-
                     "displayLength": 5000,
                     "order": [
                         [groupColumn, 'desc']
                     ],
+                    select: {
+                        style: 'os',
+                        blurable: true
+                    },
 
                     "drawCallback": function (settings) {
                         var api = this.api();
@@ -138,7 +141,7 @@
                         sort_as_custom_func: mySort
                     },
                     {
-                        // Release name (aka version number)
+                        // Version (aka root version number, e.g., DOS 18.1)
                         column_number: 2,
                         filter_type: 'multi_select',
                         select_type: 'chosen',
@@ -148,7 +151,7 @@
                         sort_as_custom_func: mySort
                     },
                     {
-                        // Release name (aka version number)
+                        // Release name (aka full version number)
                         column_number: 3,
                         filter_type: 'multi_select',
                         select_type: 'chosen',
@@ -207,7 +210,7 @@
                     //    column_number: 9,
                     //},
                 ], {
-                    //cumulative_filtering: true
+                    cumulative_filtering: true
                 });
             });
         });
@@ -235,7 +238,10 @@
         </div>
     </nav>
     <div id="intro-text">
-        <p id="intro">This page shows changes since the initial DOS 18.1 release. This page is in development and this is a demo site that customers can't access. This page will probably end up in HC Community or on docs.healthcatalyst.com. Feedback invited on #pe-comms-and-docs. Ways to use this page: Drag columns | <code>Shift</code> + click</p>
+        <p id="intro">This page shows changes since the initial DOS 18.1 release. This page is in development and this is a demo site that
+            customers can't access. This page will probably end up in HC Community or on docs.healthcatalyst.com. Feedback
+            invited on #pe-comms-and-docs. Ways to use this page: Drag columns  | 
+            <code>Shift</code> + click to sort multiple columns</p>
     </div>
     <table id="notes" class="cell-border display compact" style="width:100%">
         <thead>
