@@ -8,6 +8,7 @@ $(document).ready(function () {
             tr.append("<td>" + json[i].softwareAbbrev + "</td>");
             tr.append("<td>" + json[i].releaseName + "</td>");
             tr.append("<td>" + json[i].sqlServerVersion + "</td>");
+            tr.append("<td>" + json[i].buildDate + "</td>");
             tr.append("<td>" + json[i].releaseDate + "</td>");
             tr.append("<td>" + json[i].type + "</td>");
             tr.append("<td>" + json[i].releaseNote + "</td>");
@@ -57,7 +58,7 @@ $(document).ready(function () {
                 }).data().each(function (group, i) {
                     if (last !== group) {
                         $(rows).eq(i).before(
-                            '<tr class="group"><td colspan="9">' +
+                            '<tr class="group"><td colspan="10">' +
                             group + '</td></tr>'
                         );
 
@@ -121,7 +122,7 @@ $(document).ready(function () {
                     dropdownAutoWidth: true
                 },
                 {
-                    // Release date
+                    // Build date
                     column_number: 5,
                     filter_type: 'multi_select',
                     sort_order: 'asc',
@@ -129,19 +130,27 @@ $(document).ready(function () {
                     select_type: 'chosen'
                 },
                 {
-                    // Type
+                    // Release date
                     column_number: 6,
+                    filter_type: 'multi_select',
+                    sort_order: 'asc',
+                    filter_match_mode: 'exact',
+                    select_type: 'chosen'
+                },
+                {
+                    // Type
+                    column_number: 7,
                     filter_type: 'multi_select',
                     filter_match_mode: 'exact',
                     select_type: 'chosen'
                 },
                 //{
                 //    Release note
-                //    column_number: 7,
+                //    column_number: 8,
                 //},            
                 {
                     // Products affected
-                    column_number: 8,
+                    column_number: 9,
                     column_data_type: "html",
                     html_data_type: "selector",
                     filter_default_label: "Select product",
@@ -152,7 +161,7 @@ $(document).ready(function () {
                 }
                 //,{
                 //    ID
-                //    column_number: 9,
+                //    column_number: 10,
                 //},
             ]
             // Cumulative not recommended because user can't select multiple releases
