@@ -34,10 +34,10 @@ jq . -s 1.json > 2.json
 jq -r 'del(.[] | select(.publish != "Yes"))' <2.json >3.json
 
 #Select which fields to output
-jq '.[] |= {releaseDate,"fullName":.releaseName,"sqlServerVersion":.releaseName,"software":.releaseName,releaseName,releaseNote,type,productsAffected,id}' <3.json >4.json
+jq '.[] |= {releaseDate,buildDate,"fullName":.releaseName,"sqlServerVersion":.releaseName,"software":.releaseName,releaseName,releaseNote,type,productsAffected,id}' <3.json >4.json
 
-#Limit "releaseDate" to just the date
-jq '[.[] | .releaseDate |= sub(" ........"; "")]' <4.json >5.json 
+#Limit "buildDate" to just the date
+jq '[.[] | .buildDate |= sub(" ........"; "")]' <4.json >5.json 
 
 #Remove triggered by from .fullName
 jq '[.[] | ."fullName" |= sub(" triggered on(.*?)......-......";"")]' <5.json >6.json 
@@ -58,7 +58,7 @@ jq '[.[] | .software |= sub(" (.*?) triggered on(.*?)......-......";"")]' <10.js
 
 #New column to abbreviate "Software"
 ##Duplicate fullName field, combine full name and release date
-jq '.[] |= {releaseDate,fullName: (.fullName + ", " + .releaseDate),sqlServerVersion,software,"softwareAbbrev":.fullName,releaseName,releaseNote,type,productsAffected,id}' <11.json >12.json
+jq '.[] |= {buildDate,releaseDate,fullName: (.fullName + " released " + .releaseDate),sqlServerVersion,software,"softwareAbbrev":.fullName,releaseName,releaseNote,type,productsAffected,id}' <11.json >12.json
 ##Remove SQL Server version for CAP and DOS
 jq '[.[] | .softwareAbbrev |= sub(" for SQL 20.."; "")]' <12.json >13.json
 jq '[.[] | .softwareAbbrev |= match("[A-Z]* [0-9]*[0-9].[0-9]").string]' <13.json >14.json
