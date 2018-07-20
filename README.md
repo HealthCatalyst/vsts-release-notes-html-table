@@ -1,6 +1,6 @@
 A long list of release notes covering multiple products and services, versions, supported SQL Server versions, etc., makes it difficult to discover information relevant to a specific combination of those categories. This solution automatically generates release notes from VSTS work items associated with a VSTS release and publishes them in a filterable, sortable, and searchable HTML table.
 
-![example](example.png)
+![example](resources/example.png)
 
 For less-complex needs, consider using the VSTS release notes extension [described below](#step-2-set-up-a-release-notes-task) and forgetting the rest.
 
