@@ -2,6 +2,7 @@ body {
     font-family: "Segoe UI", Tahoma, Helvetica, sans-serif;
     font-size: 13px;
     line-height: 1.25;
+    background-color: #f0f3f6;
 }
 
 br {
@@ -30,6 +31,24 @@ a:hover {
     color: #33beff;
 }
 
+#white {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 25px;
+    padding-bottom: 12px;
+    background-color: white;
+    margin-bottom: 30px;
+}
+
+#separator {
+    color: #00aeff;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 600;
+}
+
 .navbar {
     height: 53px;
     background-color: #384655 !important;
@@ -56,13 +75,13 @@ a:hover {
     font-size: 13px;
 }
 
-#intro-text {
-    margin: 25px;
+.dataTables_wrapper {
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .btn-group,
 div.dt-buttons {
-    margin-left: 25px;
     margin-bottom: 20px;
 }
 
@@ -160,6 +179,7 @@ label {
     height: 26px;
     width: 225px;
     zoom: unset;
+    margin-right: -10px;
 }
 
 .chosen-container-multi .chosen-choices {
@@ -205,6 +225,10 @@ label {
     color: #708090;
 }
 
+.inuse, .ui-slider-range .inuse, .yadcf-filter-range-number-slider .inuse {
+    background: white;
+}
+
 table {
     width: 100% !important;
 }
@@ -214,7 +238,7 @@ th {
     font-weight: 600;
     color: #006d9a;
     vertical-align: bottom;
-    line-height: 1.25;
+    line-height: 1.3;
     font-size: 13px;
 }
 
