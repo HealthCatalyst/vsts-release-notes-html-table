@@ -86,6 +86,8 @@ $(document).ready(function () {
                     column_number: 0,
                     filter_type: 'multi_select',
                     select_type: 'chosen',
+                    sort_as: 'alphaNum',
+                    sort_order: "asc",
                     filter_match_mode: 'exact'
                 },
                 {
@@ -101,7 +103,8 @@ $(document).ready(function () {
                     filter_type: 'multi_select',
                     select_type: 'chosen',
                     filter_match_mode: 'exact',
-                    sort_as: "desc"
+                    sort_as: 'alphaNum',
+                    sort_order: "asc"
                 },
                 {
                     // Release name (aka version number)
@@ -109,7 +112,7 @@ $(document).ready(function () {
                     filter_type: 'multi_select',
                     select_type: 'chosen',
                     sort_order: 'asc',
-                    sort_as: 'asc',
+                    sort_as: 'alphaNum',
                     filter_match_mode: 'exact'
                 },
                 {
@@ -125,17 +128,19 @@ $(document).ready(function () {
                     // Build date
                     column_number: 5,
                     filter_type: 'multi_select',
-                    sort_order: 'asc',
+                    sort_order: 'desc',
                     filter_match_mode: 'exact',
-                    select_type: 'chosen'
+                    select_type: 'chosen',
+                    date_format: "mm.dd.yyyy"
                 },
                 {
                     // Release date
                     column_number: 6,
                     filter_type: 'multi_select',
-                    sort_order: 'asc',
+                    sort_order: 'desc',
                     filter_match_mode: 'exact',
-                    select_type: 'chosen'
+                    select_type: 'chosen',
+                    date_format: "mm.dd.yyyy"
                 },
                 {
                     // Type
