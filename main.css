@@ -1,7 +1,7 @@
 body {
     font-family: "Segoe UI", Tahoma, Helvetica, sans-serif;
     font-size: 13px;
-    line-height: 1.25;
+    line-height: 1.45;
     background-color: #f0f3f6;
 }
 
@@ -253,7 +253,7 @@ table.dataTable thead th,
 table.dataTable thead td {
     border-bottom: 1px solid #708090;
     box-shadow: 0 4px 2px -2px rgba(0, 0, 0, .15);
-    font-weight: unset;
+    font-weight: 600;
 }
 
 td {
@@ -338,6 +338,10 @@ th:focus {
     font-size: 13px;
     font-weight: normal;
     color: #708090;
+}
+
+.chosen-container-multi .chosen-choices li.search-choice {
+    background-color: #f0f3f6;
 }
 
 .chosen-container-multi .chosen-choices li.search-field input[type='text'] {
