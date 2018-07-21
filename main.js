@@ -23,7 +23,7 @@ $(document).ready(function () {
             //orderFixed: [2, 'asc'],
             keys: true,
             //stateSave: true,
-            responsive: true,
+            //responsive: true,
             colReorder: true,
             select: true,
             fixedHeader: true,
@@ -35,7 +35,7 @@ $(document).ready(function () {
                 'copy', 'excel', 'csv'
             ],
             //Change order of elements on page
-            dom: 'frBtip',
+            dom: 'frBti',
             "displayLength": 5000,
             "order": [
                 [groupColumn, 'desc']
