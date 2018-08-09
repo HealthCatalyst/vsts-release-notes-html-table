@@ -107,7 +107,7 @@ $(document).ready(function () {
                     sort_order: "asc"
                 },
                 {
-                    // Release name (aka version number)
+                    // Release (aka version number)
                     column_number: 3,
                     filter_type: 'multi_select',
                     select_type: 'chosen',
