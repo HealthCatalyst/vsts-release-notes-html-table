@@ -4,10 +4,24 @@
 #Stepped for troubleshooting purposes
 #VersionsAffected is not used
 
-#PUT YOUR JSON FILES IN A DIR AT ROOT CALLED `json`
-cd json
+#Create `json` directory at root: `mkdir json-source`
+#Add and maintain source files in `json-source`
+#Final output file is `test.json` at root
+#Copy/paste contents of test.json into Azure > `release-notes` web app > App Service Editor > `test.json`
 
-#Encode
+#Remove `test.json` (final output file) (if it already exists)
+rm test.json
+
+#Make JSON processing directory
+mkdir json-processing
+
+#Move source files to `json-processing` directory
+cp -a json-source/. json-processing/
+
+#Move to `json-processing` directory`
+cd json-processing
+
+#Encode all JSON files
 dos2unix *.json
 
 #Escape quotes (including hrefs within values)
@@ -69,6 +83,11 @@ jq 'map(if .type== "Bug" then .type= "Patched bug" else . end) | map(if .type== 
 #Split products affected into array
 jq 'map(.productsAffected |= split(";"))' <15.json >test.json
 
+#Move to root directory
 cd ..
 
-cp json/test.json .
+#copy `test.json` to root directory
+cp json-processing/test.json .
+
+#Remove `json-processing` directory
+rm -rf json-processing
