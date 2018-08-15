@@ -2,7 +2,6 @@
 #Script to prepare JSON output from release notes step in VSTS releases to be transformed into a dynamic HTML table
 #jq required (https://stedolan.github.io/jq)
 #Stepped for troubleshooting purposes
-#VersionsAffected is not used
 
 #Create `json` directory at root: `mkdir json-source`
 #Add and maintain source files in `json-source`
@@ -27,6 +26,9 @@ dos2unix *.json
 #Escape quotes (including hrefs within values)
 sed -i -E 's/"/\\&/4g; s/\\"(,)?$/"\1/' *.json
 
+#Remove tabs
+sed -i -E 's|\t||g;' *.json
+
 #Bold to code style
 ##Strange corner case in 18.1.18165.03 for 2012 and 2016 (line is removable if not working in CAP VSTS project)
 sed -i -E 's|int.<b>|int.</b>|g;' *.json
@@ -48,7 +50,7 @@ jq . -s 1.json > 2.json
 jq -r 'del(.[] | select(.publish != "Yes"))' <2.json >3.json
 
 #Select which fields to output
-jq '.[] |= {releaseDate,buildDate,"fullName":.releaseName,"sqlServerVersion":.releaseName,"software":.releaseName,releaseName,releaseNote,type,productsAffected,id}' <3.json >4.json
+jq '.[] |= {releaseDate,buildDate,"fullName":.releaseName,"sqlServerVersion":.releaseName,"software":.releaseName,releaseName,releaseNote,type,versionsAffected,productsAffected,id}' <3.json >4.json
 
 #Limit "buildDate" to just the date
 jq '[.[] | .buildDate |= sub(" ........"; "")]' <4.json >5.json 
@@ -63,25 +65,30 @@ jq '[.[] | .releaseName |= sub(" for SQL 20.."; "") | ."releaseName" |= sub(" tr
 jq '[.[] | .sqlServerVersion |= sub("[A-Z](.*?)for "; "") | .sqlServerVersion |= sub(" triggered on(.*?)......-......";"")]' <7.json >8.json
 ##Replace SQL Server version for SMD and SAMD with N/A
 jq '[.[] | .sqlServerVersion |= sub("S(.*?) ........"; "N/A")]' <8.json >9.json
+#N/A carries over numeral (e.g., N/A6)...?
+sed -i -E 's|N/A[0-9]|N/A|g;' <9.json >10.json
 
 #Limit "Software" to just the software
 ##CAP and DOS
-jq '[.[] | .software |= sub(" (.*?) for SQL 20.. triggered on(.*?)......-......";"")]' <9.json >10.json
+jq '[.[] | .software |= sub(" (.*?) for SQL 20.. triggered on(.*?)......-......";"")]' <10.json >11.json
 ##SAMD AND SMD
-jq '[.[] | .software |= sub(" (.*?) triggered on(.*?)......-......";"")]' <10.json >11.json
+jq '[.[] | .software |= sub(" (.*?) triggered on(.*?)......-......";"")]' <11.json >12.json
 
 #New column to abbreviate "Software"
 ##Duplicate fullName field, combine full name and release date
-jq '.[] |= {buildDate,releaseDate,fullName: (.fullName + " released " + .releaseDate),sqlServerVersion,software,"softwareAbbrev":.fullName,releaseName,releaseNote,type,productsAffected,id}' <11.json >12.json
+jq '.[] |= {id,type,productsAffected,versionsAffected,buildDate,releaseDate,fullName: (.fullName + " released " + .releaseDate),sqlServerVersion,software,"softwareAbbrev":.fullName,releaseName,releaseNote}' <12.json >13.json
 ##Remove SQL Server version for CAP and DOS
-jq '[.[] | .softwareAbbrev |= sub(" for SQL 20.."; "")]' <12.json >13.json
-jq '[.[] | .softwareAbbrev |= match("[A-Z]* [0-9]*[0-9].[0-9]").string]' <13.json >14.json
+jq '[.[] | .softwareAbbrev |= sub(" for SQL 20.."; "")]' <13.json >14.json
+jq '[.[] | .softwareAbbrev |= match("[A-Z]* [0-9]*[0-9].[0-9]").string]' <14.json >15.json
 
 #Change bug to patched bug and PBI to added functionality
-jq 'map(if .type== "Bug" then .type= "Patched bug" else . end) | map(if .type== "Product Backlog Item" then .type= "Added functionality" else . end)' <14.json >15.json
+jq 'map(if .type== "Bug" then .type= "Patched bug" else . end) | map(if .type== "Product Backlog Item" then .type= "Added functionality" else . end)' <15.json >16.json
+
+#Split versions affected into array
+jq 'map(.versionsAffected |= split(";"))' <16.json >17.json
 
 #Split products affected into array
-jq 'map(.productsAffected |= split(";"))' <15.json >test.json
+jq 'map(.productsAffected |= split(";"))' <17.json >test.json
 
 #Move to root directory
 cd ..
