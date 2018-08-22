@@ -66,7 +66,7 @@ jq '[.[] | .sqlServerVersion |= sub("[A-Z](.*?)for "; "") | .sqlServerVersion |=
 ##Replace SQL Server version for SMD and SAMD with N/A
 jq '[.[] | .sqlServerVersion |= sub("S(.*?) ........"; "N/A")]' <8.json >9.json
 #N/A carries over numeral (e.g., N/A6)...?
-sed -i -E 's|N/A[0-9]|N/A|g;' <9.json >10.json
+sed -e 's|N/A[0-9]|N/A|g;' <9.json >10.json
 
 #Limit "Software" to just the software
 ##CAP and DOS
