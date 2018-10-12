@@ -209,3 +209,38 @@ filter_default_label: "Select tag",
 data: ['one', 'two', 'three']
 }
 ```
+
+# Instructions for the PE team: Add release notes from Bravo Notes at a major release
+In Bravo Notes, export the set of release notes locally as Markdown.
+
+Delete all new or fixed so the document only has one category. Repeat with the opposite the second time around.
+
+Combine all notes into one list.
+
+Use https://www.tablesgenerator.com to transform to HTML. Remove the unnecessary CSS.
+
+Use http://convertjson.com/html-table-to-json.htm to transform to JSON.
+
+`script.sh` cannot handle pre-escaped quotes (`\"`). This is because the method of gathering hotfix notes (done much more regularly) does not escape quotes at this stage. In the files created from Bravo Notes, search `/"` and replace with `"`. 
+
+Change `  },` to `  }`. This also aligns with the method of gathering hotfix notes.
+
+Remove `[` from the start of the file and `]` from end.
+
+Create a new .json file and match to other .json files.
+
+## jq
+Change as needed.
+
+### DOS
+```
+.[] |= { id: .ID, state: ("Done"), type: ("Bug"), releaseNote: ."Release note", versionsAffected: ("18.2"), productsAffected: .Products, publish: ("Yes"), releaseName: ("DOS 18.2.18264.05 for SQL 2012 triggered on 000000-000000"), buildDate: ("09/25/18"), releaseDate: ("09/27/18")}
+```
+
+### SAMD and SMD
+```
+.[] |= { id: .ID, state: ("Done"), type: ("Bug"), releaseNote: ."Release note", versionsAffected: ("18.2"), productsAffected: .Products, publish: ("Yes"), releaseName: ("SAMD 4.4.10.0 triggered on 000000-000000"), buildDate: ("09/25/18"), releaseDate: ("09/27/18")}
+```
+
+## Repeat
+Repeat for new, fixed, SQL 2012, SQL 2016, SMD, SAMD, DMCM.
