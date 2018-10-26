@@ -1,4 +1,4 @@
-@@WILOOP @@ 
+@@WILOOP@@ 
 {
     "id": "$($widetail.id)",
     "state": "$($widetail.fields.'System.State')",
@@ -9,4 +9,4 @@
     "publish": "$($widetail.fields.'Platform.Publish')",
     "releaseName": "$($release.name)"
 }
-@@WILOOP @@
+@@WILOOP@@
