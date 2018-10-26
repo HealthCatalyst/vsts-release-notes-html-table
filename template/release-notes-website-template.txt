@@ -8,7 +8,7 @@
     "productsAffected": "$($widetail.fields.'Platform.ProductsAffected')",
     "publish": "$($widetail.fields.'Platform.Publish')",
     "releaseName": "$($release.name)",
-    "buildDate": "$("{0:dd/MM/yy HH:mm:ss}" -f [datetime]$build.finishTime)",
+    "buildDate": "",
     "releaseDate": "$("{0:dd/MM/yy HH:mm:ss}" -f [datetime]$release.modifiedOn)"
 }
 @@WILOOP@@
