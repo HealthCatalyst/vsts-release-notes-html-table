@@ -1,0 +1,14 @@
+@@WILOOP @@ 
+{
+    "id": "$($widetail.id)",
+    "state": "$($widetail.fields.'System.State')",
+    "releaseNote": "$($widetail.fields.'Platform.ReleaseNote')",
+    "type": "$($widetail.fields.'System.WorkItemType')",
+    "versionsAffected": "$($widetail.fields.'Platform.VersionsAffected')",
+    "productsAffected": "$($widetail.fields.'Platform.ProductsAffected')",
+    "publish": "$($widetail.fields.'Platform.Publish')",
+    "releaseName": "$($release.name)",
+    "buildDate": "$(currentDate)",
+    "releaseDate": "$(currentDate)"
+}
+@@WILOOP @@
