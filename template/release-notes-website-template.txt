@@ -7,8 +7,6 @@
     "versionsAffected": "$($widetail.fields.'Platform.VersionsAffected')",
     "productsAffected": "$($widetail.fields.'Platform.ProductsAffected')",
     "publish": "$($widetail.fields.'Platform.Publish')",
-    "releaseName": "$($release.name)",
-    "buildDate": "$(currentDate)",
-    "releaseDate": "$(currentDate)"
+    "releaseName": "$($release.name)"
 }
 @@WILOOP @@
